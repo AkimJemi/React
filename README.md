@@ -28,3 +28,5 @@ C + S + 5
 npm install socket.io-client
 
 
+### https://www.npmjs.com/package/nodemon
+npm install -g nodemon

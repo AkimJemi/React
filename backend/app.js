@@ -17,6 +17,9 @@ const io = new Server(httpServer, {
 
 // node app.js
 io.on("connection", (socket) => {
+  socket.on("event-a", (arg) => {
+    console.log("arg : ", arg);
+  });
   // console.log("on connection", socket);
 });
 io.listen(4000, () => console.log("app is listening"));

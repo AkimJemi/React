@@ -4,6 +4,16 @@ import { io } from "socket.io-client";
 const socket = io("http://localhost:4000");
 console.log(socket);
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <button
+        onClick={() => {
+          socket.emit("event-a");
+        }}
+      >
+        Emit
+      </button>
+    </div>
+  );
 }
 export default App;
