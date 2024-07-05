@@ -23,6 +23,8 @@ C + j
 C + S + 5
 
 ### https://socket.io/docs/v4/server-installation/
-npm install socket.io
+
+# frontend
+npm install socket.io-client
 
 
