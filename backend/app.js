@@ -1,7 +1,7 @@
-var express = require("express");
-
-
+// var express = require("express");
 const { Server } = require("socket.io");
+const { createServer } = require("http");
+const httpServer = createServer();
 const io = new Server();
 // var app = express();
 // app.get("/ok", (req, res) => {
@@ -13,6 +13,6 @@ const io = new Server();
 
 // node app.js
 io.on("connection", (socket) => {
-    console.log("on connection", socket);
+  // console.log("on connection", socket);
 });
-io.listen(4000);
+io.listen(4000, () => console.log("app is listening"));
