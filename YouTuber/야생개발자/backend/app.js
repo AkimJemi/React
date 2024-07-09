@@ -7,6 +7,19 @@ const io = new Server(httpServer, {
   },
 });
 
+const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
+const cors = require("cors");
+const app = express();
+app.use(cors());
+console.log(process.env.DB);
+mongoose
+  .connect(process.env.DB, {})
+  .then(() => console.log("connected to database"));
+
+module.exports = app;
+
 const rooms = [];
 const roomMap = [];
 
@@ -24,6 +37,7 @@ const findRoom = () => {
   }
 };
 io.on("connection", (socket) => {
+  // Event : event-a
   socket.on("event-a", (arg) => {
     console.log("arg : ", arg);
     const room = findRoom();
@@ -32,11 +46,15 @@ io.on("connection", (socket) => {
     console.log("room: ", room);
     socket.join(room.id);
   });
+  // Event : siginal
   socket.on("signal", () => {
     const id = roomMap[socket.id];
     socket.to(id).emit("signal");
     console.log(socket.rooms);
   });
-  console.log("socket.rooms : ", socket.rooms);
+  socket.on("login", (userName, cb) => {
+    console.log("Backend login info ", userName);
+    cb(true, "Login Succeed");
+  });
 });
 io.listen(4000, () => console.log("app is listening"));
