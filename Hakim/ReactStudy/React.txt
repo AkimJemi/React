@@ -1,0 +1,12 @@
+
+https://www.youtube.com/watch?v=6GECT2Jrr_g
+JXX
+Xml
+
+SPA = single page application
+메뉴를 클릭할 때마다 필요한 부분만 수정
+
+React component
+라우팅 처리를 한다
+라우팅:브라우저 url이 바뀔때마다 보여줄 컴퍼넌트를 매핑하고 랜더링하는 과정
+에로우 함수
