@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+.headerNav{
+  background-color: aliceblue;
+  padding: 10px;
+  margin: 10px;
+}
+.headerNav a{
+  padding: 5px;
+
+}
