@@ -1,0 +1,35 @@
+
+.mathContainer {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.mathContainer h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.mathContainer button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mathContainer button:hover {
+  background-color: #555;
+}
+
+.mathContainer h2 {
+  font-size: 36px;
+  margin-top: 20px;
+}

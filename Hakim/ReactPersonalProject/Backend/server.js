@@ -19,10 +19,23 @@ app.get("/", (re, res) => {
 });
 
 app.get("/users", (req, res) => {
-  const sql = "select * from user";
+  const sql =
+    "SELECT id, pw, name, delete_flag, DATE_FORMAT(created_at, '%Y-%m-%d') AS created_at, DATE_FORMAT(updated_at, '%Y-%m-%d %H:%i') AS updated_at FROM user";
   db.query(sql, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
+  });
+});
+
+app.get("/users/:id", (req, res) => {
+  const { id } = req.params;
+  const sql =
+    "SELECT id, pw, name, delete_flag, DATE_FORMAT(created_at, '%Y-%m-%d') AS created_at, DATE_FORMAT(updated_at, '%Y-%m-%d %H:%i') AS updated_at FROM user WHERE id = ?";
+  db.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json(err);
+    if (result.length === 0)
+      return res.status(404).json({ message: "User not found" });
+    return res.status(200).json(result[0]); // 결과 배열의 첫 번째 요소만 반환
   });
 });
 app.post("/register", (req, res) => {
@@ -30,7 +43,7 @@ app.post("/register", (req, res) => {
   const { id, pw, name } = req.body;
   const sql = "INSERT INTO user (id, pw, name) VALUES (?, ?, ?)";
   db.query(sql, [id, pw, name], (err, result) => {
-    if (err) return res.status(500).json(err);
+    if (err) return res.status(500).json("Fail User Register");
     return res.status(200).json("User registered successfully");
   });
 });

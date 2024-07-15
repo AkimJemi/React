@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Header from "./pages/Header";
 import Math from "./pages/Math";
 import AddUser from "./pages/AddUser";
-import PersonalInfo from "./pages/PersonalInfo";
 import UserList from "./pages/UserList";
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
       <nav className="headerNav">
         <Link to="/home">Home</Link>
         <Link to="/math">Math</Link>
-        <Link to="/personalInfo">Info</Link>
         <Link to="/addUser">AddUser</Link>
         <Link to="/users">UserList</Link>
       </nav>
@@ -23,8 +21,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/math" element={<Math />} />
         <Route path="/addUser" element={<AddUser />} />
-        <Route path="/personalInfo" element={<PersonalInfo />} />
-        <Route path="/users" element={<UserList />} />
+        <Route path="/users/*" element={<UserList />} />
       </Routes>
     </div>
   );

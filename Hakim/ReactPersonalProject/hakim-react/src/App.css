@@ -36,12 +36,29 @@
     transform: rotate(360deg);
   }
 }
-.headerNav{
-  background-color: aliceblue;
-  padding: 10px;
-  margin: 10px;
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
 }
-.headerNav a{
-  padding: 5px;
 
+.header h1 {
+  margin: 0;
+}
+
+.headerNav {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.headerNav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.headerNav a:hover {
+  text-decoration: underline;
 }

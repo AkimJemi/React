@@ -3,7 +3,6 @@ use react_hakim;
 select database();
 drop table user;
 CREATE TABLE `user` (
-  `no` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `id` varchar(10) NOT NULL,  
   `pw` varchar(15) NOT NULL,
   `name` varchar(20) NOT NULL,

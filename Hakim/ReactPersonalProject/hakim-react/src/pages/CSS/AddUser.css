@@ -1,0 +1,49 @@
+/* App.css */
+.addUserForm {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .addUserForm h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .addUserForm div {
+    margin-bottom: 10px;
+  }
+  
+  .addUserForm label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .addUserForm input[type="text"],
+  .addUserForm input[type="password"] {
+    width: calc(100% - 12px);
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .addUserForm input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .addUserForm input[type="submit"]:hover {
+    background-color: #555;
+  }
+  

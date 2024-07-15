@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import "./CSS/AddUser.css";
 const AddUser = () => {
   const [formData, setFormData] = useState({
     id: "",
@@ -15,22 +16,19 @@ const AddUser = () => {
     });
   };
   const handleSubmit = (e) => {
-    console.log(formData);
-    console.log("test");
     e.preventDefault();
     axios
-      .post("http://localhost:8081/register", formData)
+      .post("/register", formData)
       .then((response) => {
-        console.log(response.data);
-        alert("User registered successfully");
+        alert(response.data);
       })
       .catch((error) => {
-        console.error("There was an error registering the user!", error);
+        alert(error);
       });
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="addUserForm">
         <h1>ユーザー登録</h1>
         <div>
           <label htmlFor="ID">ID:</label>
@@ -44,7 +42,7 @@ const AddUser = () => {
           />
         </div>
         <div>
-          <label htmlFor="pw">pw:</label>
+          <label htmlFor="pw">Password:</label>
           <input
             type="text"
             id="pw"
@@ -55,7 +53,7 @@ const AddUser = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="name">name:</label>
           <input
             type="name"
             id="name"
