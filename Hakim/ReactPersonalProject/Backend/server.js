@@ -38,13 +38,26 @@ app.get("/users/:id", (req, res) => {
     return res.status(200).json(result[0]); // 결과 배열의 첫 번째 요소만 반환
   });
 });
-app.post("/register", (req, res) => {
-  console.log(req.body);
+app.post("/user/register", (req, res) => {
   const { id, pw, name } = req.body;
   const sql = "INSERT INTO user (id, pw, name) VALUES (?, ?, ?)";
   db.query(sql, [id, pw, name], (err, result) => {
     if (err) return res.status(500).json("Fail User Register");
     return res.status(200).json("User registered successfully");
+  });
+});
+app.post("/user/update/delete_flag", (req, res) => {
+  console.log(req.body);
+  const { id, delete_flag } = req.body;
+  const sql = "UPDATE user SET delete_flag = ? WHERE id = ?";
+  db.query(sql, [delete_flag, id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Database error occurred" });
+    }
+    return res
+      .status(200)
+      .json({ delete_flag: delete_flag, message: "Update successful" });
   });
 });
 

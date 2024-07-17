@@ -18,7 +18,7 @@ const AddUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/register", formData)
+      .post("/user/register", formData)
       .then((response) => {
         alert(response.data);
       })

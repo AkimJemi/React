@@ -47,7 +47,7 @@ const UserList = () => {
                   <Link to={`/users/personalInfo/${d.id}`}>{d.id}</Link>
                 </td>
                 <td>{d.name}</td>
-                <td>{d.delete_flag === 0 ? "✔️" : "✖️"}</td>
+                <td>{d.delete_flag === 0 ? "O" : "X"}</td>
               </tr>
             ))}
           </tbody>
