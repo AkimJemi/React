@@ -8,6 +8,7 @@ const PersonalInfo = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [deleteFlag, setDeleteFlag] = useState(null);
   const [updateMode, setUpdateMode] = useState(true);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo({
@@ -15,6 +16,7 @@ const PersonalInfo = () => {
       [name]: value,
     });
   };
+
   const updateUserDeleteFlag = (e) => {
     e.preventDefault();
     axios
@@ -34,20 +36,32 @@ const PersonalInfo = () => {
         alert(error.response?.data?.error || "An error occurred");
       });
   };
+
   const updateModeChange = (e) => {
     if (updateMode === false) {
       e.preventDefault();
       axios
         .post(`/user/update/${id}`, userInfo)
-        .then((response) => {
-          alert(response.data);
+        .then((res1) => {
+          alert(res1.data);
+          // 20240724
+          axios
+            .get(`/users/${userInfo.id}`)
+            .then((res2) => {
+              setUserInfo(res2.data);
+            })
+            .catch((err2) => {
+              alert(err2);
+            });
         })
-        .catch((error) => {
-          alert(error);
+        .catch((err1) => {
+          alert(err1);
         });
     }
+    alert(userInfo.id);
     setUpdateMode(!updateMode);
   };
+
   useEffect(() => {
     fetch(`http://localhost:8081/users/${id}`)
       .then((res) => res.json())
@@ -64,38 +78,37 @@ const PersonalInfo = () => {
 
   return (
     <div>
-      <form className="addUserForm">
+      <form className="PersonalInfoForm">
         <h2>User Information</h2>
-        <p>
-          ID:{" "}
+        <div className="form-group">
+          <label>ID:</label>
           <input
             name="id"
             value={userInfo.id}
             onChange={handleChange}
             disabled={updateMode}
           />
-        </p>
-        <p>
-          パスワード:{" "}
+        </div>
+        <div className="form-group">
+          <label>パスワード:</label>
           <input
             name="pw"
             value={userInfo.pw}
             onChange={handleChange}
             disabled={updateMode}
           />
-        </p>
-        <p>
-          名前:{" "}
+        </div>
+        <div className="form-group">
+          <label>名前:</label>
           <input
             name="name"
             value={userInfo.name}
             onChange={handleChange}
             disabled={updateMode}
           />
-          {updateMode}
-        </p>
-        <p>
-          削除有無:{" "}
+        </div>
+        <div className="form-group">
+          <label>削除有無:</label>
           <button
             onClick={updateUserDeleteFlag}
             id="delete_flag"
@@ -104,21 +117,26 @@ const PersonalInfo = () => {
           >
             {deleteFlag}
           </button>
-        </p>
-        <p>登録日付: {userInfo.created_at}</p>
-        <p>
-          更新日付:{" "}
-          {userInfo.updated_at === "0000-00-00 00:00"
-            ? "更新なし"
-            : userInfo.updated_at}
-        </p>
-        <p>
+        </div>
+        <div className="form-group">
+          <label>更新日付:</label>
+          <span>
+            {userInfo.updated_at === "0000-00-00 00:00"
+              ? "×"
+              : userInfo.updated_at}
+          </span>
+        </div>
+        <div className="form-group">
+          <label>登録日付:</label>
+          <span>{userInfo.created_at}</span>
+        </div>
+        <div className="form-group">
           <input
             type="button"
             onClick={updateModeChange}
-            value={updateMode === true ? "編集" : "更新"}
+            value={updateMode ? "編集" : "更新"}
           />
-        </p>
+        </div>
       </form>
     </div>
   );

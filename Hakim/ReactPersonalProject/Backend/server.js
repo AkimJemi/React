@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const e = require("express");
 
 const app = express();
 app.use(cors());
@@ -42,8 +43,15 @@ app.post("/user/register", (req, res) => {
   const { id, pw, name } = req.body;
   const sql = "INSERT INTO user (id, pw, name) VALUES (?, ?, ?)";
   db.query(sql, [id, pw, name], (err, result) => {
-    if (err) return res.status(500).json("Fail User Register");
-    return res.status(200).json("User registered successfully");
+    if (err) {
+      switch (err.sqlState) {
+        case "23000":
+          return res.status(500).json({ message: "Already exists user ID" });
+        default:
+          return res.status(500).json({ message: "Fail User Register" });
+      }
+    }
+    return res.status(200).json({ message: "User registered successfully" });
   });
 });
 app.post("/user/update/delete_flag", (req, res) => {

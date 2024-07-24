@@ -20,10 +20,10 @@ const AddUser = () => {
     axios
       .post("/user/register", formData)
       .then((response) => {
-        alert(response.data);
+        alert(response.data.message);
       })
       .catch((error) => {
-        alert(error);
+        alert(error.response.message);
       });
   };
   return (
