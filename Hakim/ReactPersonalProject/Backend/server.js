@@ -60,7 +60,15 @@ app.post("/user/update/delete_flag", (req, res) => {
       .json({ delete_flag: delete_flag, message: "Update successful" });
   });
 });
-
+app.post("/user/update/:id", (req, res) => {
+  const { id: previous_id } = req.params;
+  const { id, pw, name } = req.body;
+  const sql = "UPDATE user SET id = ?, pw = ?, name = ? WHERE id = ?";
+  db.query(sql, [id, pw, name, previous_id], (err, result) => {
+    if (err) return res.status(500).json("Fail User update");
+    return res.status(200).json("User update successfully");
+  });
+});
 app.listen(8081, () => {
   console.log("listening");
 });

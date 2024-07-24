@@ -7,8 +7,14 @@ const PersonalInfo = () => {
   const { id } = useParams();
   const [userInfo, setUserInfo] = useState(null);
   const [deleteFlag, setDeleteFlag] = useState(null);
-  const [updateMode, setUpdateMode] = useState(null);
-  // 2024717
+  const [updateMode, setUpdateMode] = useState(true);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInfo({
+      ...userInfo,
+      [name]: value,
+    });
+  };
   const updateUserDeleteFlag = (e) => {
     e.preventDefault();
     axios
@@ -17,7 +23,7 @@ const PersonalInfo = () => {
         delete_flag: e.target.value === "0" ? 1 : 0,
       })
       .then((response) => {
-        alert(response.data.message); // Assuming the server responds with { message: "..." }
+        alert(response.data.message);
         setUserInfo({
           ...userInfo,
           [e.target.id]: response.data.delete_flag,
@@ -27,6 +33,20 @@ const PersonalInfo = () => {
       .catch((error) => {
         alert(error.response?.data?.error || "An error occurred");
       });
+  };
+  const updateModeChange = (e) => {
+    if (updateMode === false) {
+      e.preventDefault();
+      axios
+        .post(`/user/update/${id}`, userInfo)
+        .then((response) => {
+          alert(response.data);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+    setUpdateMode(!updateMode);
   };
   useEffect(() => {
     fetch(`http://localhost:8081/users/${id}`)
@@ -39,35 +59,67 @@ const PersonalInfo = () => {
   }, [id]);
 
   if (!userInfo) {
-    return <div>Loading...</div>; // 데이터 로드 중일 때 로딩 메시지 표시
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h2>User Information</h2>
-      <p>ID: {userInfo.id}</p>
-      <p>パスワード: {userInfo.pw}</p>
-      <p>名前: {userInfo.name}</p>
-      <p>
-        削除有無:{" "}
-        <button
-          onClick={updateUserDeleteFlag}
-          id="delete_flag"
-          value={userInfo.delete_flag}
-        >
-          {deleteFlag}
-        </button>
-      </p>
-      <p>登録日付: {userInfo.created_at}</p>
-      <p>
-        更新日付:{" "}
-        {userInfo.updated_at === "0000-00-00 00:00"
-          ? "更新なし"
-          : userInfo.updated_at}
-      </p>
-      <p>
-        <button onClick={updateUserDeleteFlag}>編集</button>
-      </p>
+      <form className="addUserForm">
+        <h2>User Information</h2>
+        <p>
+          ID:{" "}
+          <input
+            name="id"
+            value={userInfo.id}
+            onChange={handleChange}
+            disabled={updateMode}
+          />
+        </p>
+        <p>
+          パスワード:{" "}
+          <input
+            name="pw"
+            value={userInfo.pw}
+            onChange={handleChange}
+            disabled={updateMode}
+          />
+        </p>
+        <p>
+          名前:{" "}
+          <input
+            name="name"
+            value={userInfo.name}
+            onChange={handleChange}
+            disabled={updateMode}
+          />
+          {updateMode}
+        </p>
+        <p>
+          削除有無:{" "}
+          <button
+            onClick={updateUserDeleteFlag}
+            id="delete_flag"
+            value={userInfo.delete_flag}
+            disabled={updateMode}
+          >
+            {deleteFlag}
+          </button>
+        </p>
+        <p>登録日付: {userInfo.created_at}</p>
+        <p>
+          更新日付:{" "}
+          {userInfo.updated_at === "0000-00-00 00:00"
+            ? "更新なし"
+            : userInfo.updated_at}
+        </p>
+        <p>
+          <input
+            type="button"
+            onClick={updateModeChange}
+            value={updateMode === true ? "編集" : "更新"}
+          />
+        </p>
+      </form>
     </div>
   );
 };

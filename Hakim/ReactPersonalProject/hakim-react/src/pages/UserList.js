@@ -3,23 +3,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import PersonalInfo from "./PersonalInfo";
 import "./CSS/UserList.css";
-// const User = ({ userData }) => {
-//   return (
-//     <tr>
-//       <td>{userData.name}</td>
-//       <td>{userData.email}</td>
-//     </tr>
-//   );
-// };
-// const formatDate = (dateString) => {
-//   const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-//   const date = new Date(dateString);
-//   const [month, day, year] = date
-//     .toLocaleDateString("en-US", options)
-//     .split("/");
-//   if (year) return `${year}-${month}-${day}`;
-//   else return "no";
-// };
+
 const UserList = () => {
   const [userInfo, setData] = useState([]);
   useEffect(() => {
