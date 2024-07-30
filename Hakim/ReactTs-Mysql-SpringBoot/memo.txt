@@ -1,0 +1,19 @@
+# visual code studio
+### Extentions
+・Better Commands
+・Color Highlight
+・GitHub Thema ( Light Default )
+・Material Icon Theme
+・Git Graph
+・Git History
+・GitLens
+・GitHub Pull Requests and Issues
+・GitHub Repositories
+・Markdown Preview Github Styling
+・Gradle for Java
+・Spring Boot Extension Pack
+・Spring Boot Tools
+・Spring Boot Snippets
+・Spring Boot Dashboar
+
+    "start": "npx ts-node src/app.ts"
