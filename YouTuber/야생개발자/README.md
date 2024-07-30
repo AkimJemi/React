@@ -1,11 +1,19 @@
 npm config list
+
 mkdir frontend
+
 mkdir backend
+
 cd frontend
+
 npx create-react-app .
+
 # wait
+
 npm start
+
 cd ../backend
+
 npm init -y
 
 
