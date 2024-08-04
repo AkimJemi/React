@@ -1,13 +1,14 @@
 # visual code studio
 ### Extentions
-・Better Commands
+・React/Redux/React-Native snippets
+・Better Comments
 ・Color Highlight
-・GitHub Thema ( Light Default )
+・GitHub Thema
 ・Material Icon Theme
 ・Git Graph
 ・Git History
 ・GitLens
-・GitHub Pull Requests and Issues
+・GitHub Pull Requests
 ・GitHub Repositories
 ・Markdown Preview Github Styling
 ・Gradle for Java
@@ -15,5 +16,23 @@
 ・Spring Boot Tools
 ・Spring Boot Snippets
 ・Spring Boot Dashboar
+・Java
+
 
     "start": "npx ts-node src/app.ts"
+    
+npm -g i npm
+npx create-react-app board front --template typescript
+spring.datasource.driver-class-name=com.mysql.cj.jdpc.Driver
+spring.datasource.url=jdbc:msql://127.0.0.1:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+
+
+F1 
+Sping Web
+Validation
+Spring Security
+Spring Data JPA
+MySQL Driver
+Lobmok

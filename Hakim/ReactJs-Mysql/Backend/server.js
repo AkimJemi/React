@@ -36,7 +36,7 @@ app.get("/users/:id", (req, res) => {
     if (err) return res.status(500).json(err);
     if (result.length === 0)
       return res.status(404).json({ message: "User not found" });
-    return res.status(200).json(result[0]); // 결과 배열의 첫 번째 요소만 반환
+    return res.status(200).json(result[0]);
   });
 });
 app.post("/user/register", (req, res) => {
@@ -77,6 +77,14 @@ app.post("/user/update/:id", (req, res) => {
     return res.status(200).json("User update successfully");
   });
 });
+app.get("/board/select/list", (req, res) => {
+  const sql = "SELECT * FROM board";
+  db.query(sql, [], (err, result) => {
+    if (err) return res.status(500).json("Faill");
+    return res.status(200).json(result);
+  });
+});
+
 app.listen(8081, () => {
   console.log("listening");
 });
