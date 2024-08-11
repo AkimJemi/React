@@ -1,0 +1,17 @@
+{
+  "name": "techroad",
+  "version": "1.0.0",
+  "description": "Project to create a job search and recruitment site for IT engineers using React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified main\" && exit 1",
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2"
+  }
+}
