@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "../user/Login";
+import MyPage from "../user/MyPage";
 import UserRegister from "../user/UserRegister";
 
 const mainContentStyle: React.CSSProperties = {
@@ -21,6 +22,7 @@ const MainContent: React.FC = () => {
       <Routes>
         <Route path="/user/register" element={<UserRegister />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/user/myPage" element={<MyPage />} />
       </Routes>
     </main>
   );

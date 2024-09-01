@@ -49,6 +49,9 @@ const Header: React.FC = () => {
           <Link to="/login" style={linkStyle}>
             Login
           </Link>
+          <Link to="/user/myPage" style={linkStyle}>
+            myPage
+          </Link>
         </nav>
       </div>
     </header>
